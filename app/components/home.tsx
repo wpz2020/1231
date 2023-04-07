@@ -135,8 +135,8 @@ export function CDKModal() {
             value={CDK}
           />
         </div> 
-        <p>   <a target="_blank" href="http://www.baidu.com">授权码自助购买地址</a></p>
-        <p>   测试授权码一：qq5666157 测试授权码二：wenmuqq5666157</p>
+        <p>   <a target="_blank" href="http://www.baidu.com" type="decoration:none">自助购买授权码，暂不可用！</a></p>
+        <p>如有疑问请联系微信号：JamesYu_888</p>
         <div className={styles["modal-footer"]}>
           <div className={styles["modal-actions"]}>
             <IconButton
