@@ -82,24 +82,24 @@ export function CDKModal() {
   const [CDK, SetCDK] = useState("");
   let cdkdb = [
     {
-      "cdk": "wenmuqq5666157",
-      "time": "2024-03-20"
+      "cdk": "ququaiqwertyghuhji",
+      "time": "2024-04-7"
   },
   {
-      "cdk": "wenmuHESMR58384IYLUX",
-      "time": "2024-03-20"
+      "cdk": "ququaijkhhjkggjksj",
+      "time": "2023-05-7"
   },
   {
-      "cdk": "wenmuJZQLE334963SQMQ",
-      "time": "2024-03-20"
+      "cdk": "ququaihjhkihdjslks",
+      "time": "2023-4-8"
   },
   {
-      "cdk": "wenmuVUIOE28455977F8",
-      "time": "2024-03-20"
+      "cdk": "ququailjkjbghgyguh",
+      "time": "2023-4-14"
   },
   {
-      "cdk": "qq5666157",
-      "time": "2024-03-20"
+      "cdk": "ququaijnjnhkjisopo",
+      "time": "2023-10-7"
   },
   ];
   const login = () => {
@@ -113,7 +113,7 @@ export function CDKModal() {
       document.getElementsByClassName("modal-mask")?.[0]?.remove();
       alert("登录成功");
     } else {
-      alert("授权码错误或失效,请联系管理员!");
+      alert("授权码错误或失效,请联系微信：JamesYu_888!");
     }
   };
   let loaclcdk: any = window.localStorage.getItem("cdk");
