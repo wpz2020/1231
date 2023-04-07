@@ -187,12 +187,12 @@ export function Home() {
         className={styles.sidebar + ` ${showSideBar && styles["sidebar-show"]}`}
       >
         <div className={styles["sidebar-header"]}>
-          <div className={styles["sidebar-title"]}>授权码ChatGPT</div>
+          <div className={styles["sidebar-title"]}>ChatGPT-QUQUAI</div>
           <div className={styles["sidebar-sub-title"]}>
-            www.yunpen.xyz.
+            quying_global
           </div>
           <div className={styles["sidebar-sub-title"]}>
-            手机用户请单击此页面.
+            获取更多请关注公众号：趣盈全球
           </div>
           <div className={styles["sidebar-logo"]}>
             <ChatGptIcon />
