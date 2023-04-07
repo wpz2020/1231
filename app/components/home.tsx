@@ -1,8 +1,6 @@
 "use client";
 
-require("../polyfill");
-
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 
 import { IconButton } from "./button";
 import styles from "./home.module.scss";
@@ -16,14 +14,25 @@ import AddIcon from "../icons/add.svg";
 import LoadingIcon from "../icons/three-dots.svg";
 import CloseIcon from "../icons/close.svg";
 
-import { useChatStore } from "../store";
-import { isMobileScreen } from "../utils";
+import {
+  Message,
+  SubmitKey,
+  useChatStore,
+  ChatSession,
+  BOT_HELLO,
+} from "../store";
+import {
+  copyToClipboard,
+  downloadAs,
+  isMobileScreen,
+  selectOrCopy,
+} from "../utils";
 import Locale from "../locales";
+import { ChatList } from "./chat-list";
 import { Chat } from "./chat";
 
 import dynamic from "next/dynamic";
 import { REPO_URL } from "../constant";
-import { ErrorBoundary } from "./error";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -35,10 +44,6 @@ export function Loading(props: { noLogo?: boolean }) {
 }
 
 const Settings = dynamic(async () => (await import("./settings")).Settings, {
-  loading: () => <Loading noLogo />,
-});
-
-const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => <Loading noLogo />,
 });
 
@@ -55,23 +60,11 @@ function useSwitchTheme() {
       document.body.classList.add("light");
     }
 
-    const metaDescriptionDark = document.querySelector(
-      'meta[name="theme-color"][media]',
-    );
-    const metaDescriptionLight = document.querySelector(
-      'meta[name="theme-color"]:not([media])',
-    );
-
-    if (config.theme === "auto") {
-      metaDescriptionDark?.setAttribute("content", "#151515");
-      metaDescriptionLight?.setAttribute("content", "#fafafa");
-    } else {
-      const themeColor = getComputedStyle(document.body)
-        .getPropertyValue("--theme-color")
-        .trim();
-      metaDescriptionDark?.setAttribute("content", themeColor);
-      metaDescriptionLight?.setAttribute("content", themeColor);
-    }
+    const themeColor = getComputedStyle(document.body)
+      .getPropertyValue("--theme-color")
+      .trim();
+    const metaDescription = document.querySelector('meta[name="theme-color"]');
+    metaDescription?.setAttribute("content", themeColor);
   }, [config.theme]);
 }
 
@@ -85,7 +78,83 @@ const useHasHydrated = () => {
   return hasHydrated;
 };
 
-function _Home() {
+export function CDKModal() {
+  const [CDK, SetCDK] = useState("");
+  let cdkdb = [
+    {
+      "cdk": "wenmuqq5666157",
+      "time": "2024-03-20"
+  },
+  {
+      "cdk": "wenmuHESMR58384IYLUX",
+      "time": "2024-03-20"
+  },
+  {
+      "cdk": "wenmuJZQLE334963SQMQ",
+      "time": "2024-03-20"
+  },
+  {
+      "cdk": "wenmuVUIOE28455977F8",
+      "time": "2024-03-20"
+  },
+  {
+      "cdk": "qq5666157",
+      "time": "2024-03-20"
+  },
+  ];
+  const login = () => {
+    let cdkArray = cdkdb.filter((item) => item.cdk === CDK);
+    console.log(cdkArray);
+    if (
+      cdkArray.length > 0 &&
+      new Date(cdkArray[0].time).getTime() > new Date().getTime()
+    ) {
+      window.localStorage.setItem("cdk", JSON.stringify(cdkArray[0]));
+      document.getElementsByClassName("modal-mask")?.[0]?.remove();
+      alert("登录成功");
+    } else {
+      alert("授权码错误或失效,请联系管理员!");
+    }
+  };
+  let loaclcdk: any = window.localStorage.getItem("cdk");
+  let time: any = JSON.parse(loaclcdk)?.time;
+  if (!time || new Date(time).getTime() < new Date().getTime()) {
+    window.localStorage.removeItem("cdk");
+  }
+  return !window.localStorage.getItem("cdk") ? (
+    <div className="modal-mask">
+      <div className={styles["modal-container"]}>
+        <div className={styles["modal-header"]}>
+          <div className={styles["modal-title"]}>请输入授权码</div>
+        </div>
+
+        <div className={styles["modal-content"]}>
+          <input
+            className={styles["modal-input"]}
+            onInput={(e) => SetCDK(e.currentTarget.value)}
+            value={CDK}
+          />
+        </div> 
+        <p>   <a target="_blank" href="http://www.baidu.com">授权码自助购买地址</a></p>
+        <p>   测试授权码一：qq5666157 测试授权码二：wenmuqq5666157</p>
+        <div className={styles["modal-footer"]}>
+          <div className={styles["modal-actions"]}>
+            <IconButton
+              icon={<AddIcon />}
+              bordered
+              text="确定"
+              onClick={() => login()}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div></div>
+  );
+}
+
+export function Home() {
   const [createNewSession, currentIndex, removeSession] = useChatStore(
     (state) => [
       state.newSession,
@@ -93,7 +162,6 @@ function _Home() {
       state.removeSession,
     ],
   );
-  const chatStore = useChatStore();
   const loading = !useHasHydrated();
   const [showSideBar, setShowSideBar] = useState(true);
 
@@ -106,7 +174,6 @@ function _Home() {
   if (loading) {
     return <Loading />;
   }
-
   return (
     <div
       className={`${
@@ -115,13 +182,17 @@ function _Home() {
           : styles.container
       }`}
     >
+      <CDKModal />
       <div
         className={styles.sidebar + ` ${showSideBar && styles["sidebar-show"]}`}
       >
         <div className={styles["sidebar-header"]}>
-          <div className={styles["sidebar-title"]}>ChatGPT Next</div>
+          <div className={styles["sidebar-title"]}>授权码ChatGPT</div>
           <div className={styles["sidebar-sub-title"]}>
-            Build your own AI assistant.
+            www.yunpen.xyz.
+          </div>
+          <div className={styles["sidebar-sub-title"]}>
+            手机用户请单击此页面.
           </div>
           <div className={styles["sidebar-logo"]}>
             <ChatGptIcon />
@@ -143,7 +214,11 @@ function _Home() {
             <div className={styles["sidebar-action"] + " " + styles.mobile}>
               <IconButton
                 icon={<CloseIcon />}
-                onClick={chatStore.deleteSession}
+                onClick={() => {
+                  if (confirm(Locale.Home.DeleteChat)) {
+                    removeSession(currentIndex);
+                  }
+                }}
               />
             </div>
             <div className={styles["sidebar-action"]}>
@@ -193,13 +268,5 @@ function _Home() {
         )}
       </div>
     </div>
-  );
-}
-
-export function Home() {
-  return (
-    <ErrorBoundary>
-      <_Home></_Home>
-    </ErrorBoundary>
   );
 }
