@@ -612,7 +612,7 @@ export function Chat(props: {
               </div>
             </div>
           );
-        })}<p>👉<a target="_blank" href="https://www.yunpen.xyz">广告位1️⃣👈</a><a target="_blank" href="https://www.yunpen.xyz">广告位2️⃣</a> 🙈<a target="_blank" href="https://www.yunpen.xyz">广告位3️⃣</a> 🙊<a target="_blank" href="https://www.yunpen.xyz/">广告位4️⃣</a></p>
+        })}<p>👉<a target="_blank" href="">趣趣水印1️⃣👈</a><a target="_blank" href="">趣趣生活2️⃣</a> 🙈<a target="_blank" href="">趣趣电影3️⃣</a> 🙊<a target="_blank" href="">趣趣视频4️⃣</a></p>
       </div>
 
       <div className={styles["chat-input-panel"]}>
