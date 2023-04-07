@@ -82,7 +82,7 @@ export function CDKModal() {
   const [CDK, SetCDK] = useState("");
   let cdkdb = [
     {
-      "cdk": "ququaiqwertyghuhji",
+      "cdk": "13579yzb.",
       "time": "2024-04-7"
   },
   {
