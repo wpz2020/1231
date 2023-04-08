@@ -83,30 +83,25 @@ export function CDKModal() {
   let cdkdb = [
     {
       "cdk": "13579yzb.",
-      "time": "2024-04-7"
+      "time": "2024-03-20"
   },
-     {
+  {
       "cdk": "1357900121",
-      "time": "2023-09-8"
+      "time": "2023-09-10"
   },
   {
-      "cdk": "ququaijkhhjkggjksj",
-      "time": "2023-05-7"
+      "cdk": "wenmuJZQLE334963SQMQ",
+      "time": "2024-03-20"
   },
   {
-      "cdk": "ququaihjhkihdjslks",
-      "time": "2023-4-8"
+      "cdk": "wenmuVUIOE28455977F8",
+      "time": "2024-03-20"
   },
   {
-      "cdk": "ququailjkjbghgyguh",
-      "time": "2023-4-14"
-  },
-  {
-      "cdk": "ququaijnjnhkjisopo",
-      "time": "2023-10-7"
+      "cdk": "qq5666157",
+      "time": "2024-03-20"
   },
   ];
-
   const login = () => {
     let cdkArray = cdkdb.filter((item) => item.cdk === CDK);
     console.log(cdkArray);
@@ -140,8 +135,8 @@ export function CDKModal() {
             value={CDK}
           />
         </div> 
-        <p>   <a target="_blank" href="http://www.baidu.com" type="decoration:none">自助购买授权码，暂不可用！</a></p>
-        <p>如有疑问请联系微信号：JamesYu_888</p>
+        <p>   <a target="_blank" href="">授权码自助购买暂时不可用</a></p>
+        <p>如有更多好的想法请联系：JamesYu_888</p>
         <div className={styles["modal-footer"]}>
           <div className={styles["modal-actions"]}>
             <IconButton
@@ -194,10 +189,10 @@ export function Home() {
         <div className={styles["sidebar-header"]}>
           <div className={styles["sidebar-title"]}>ChatGPT-QUQUAI</div>
           <div className={styles["sidebar-sub-title"]}>
-            quying_global
+           quying_global
           </div>
           <div className={styles["sidebar-sub-title"]}>
-            获取更多请关注公众号：趣盈全球
+            获取更多资讯请关注公众号：趣盈全球
           </div>
           <div className={styles["sidebar-logo"]}>
             <ChatGptIcon />
@@ -236,7 +231,7 @@ export function Home() {
                 shadow
               />
             </div>
- 
+           
           </div>
           <div>
             <IconButton
@@ -271,3 +266,4 @@ export function Home() {
     </div>
   );
 }
+
