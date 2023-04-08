@@ -102,7 +102,56 @@ export function CDKModal() {
       "time": "2023-10-7"
   },
   ];
-  
+  export function CDKModal() {
+  const [CDK, SetCDK] = useState("");
+  const [isValidCDK, setIsValidCDK] = useState(false);
+
+  let cdkdb = [
+    {
+      "cdk": "13579yzb.",
+      "time": "2024-04-7"
+    },
+    {
+      "cdk": "ququaijkhhjkggjksj",
+      "time": "2023-05-7"
+    },
+    {
+      "cdk": "ququaihjhkihdjslks",
+      "time": "2023-4-8"
+    },
+    {
+      "cdk": "ququailjkjbghgyguh",
+      "time": "2023-4-14"
+    },
+    {
+      "cdk": "ququaijnjnhkjisopo",
+      "time": "2023-10-7"
+    },
+  ];
+
+  const handleCheckCDK = () => {
+    // 判断用户输入的 CDK 是否已经被使用过
+    const isUsed = cdkdb.some((cdkItem) => {
+      return cdkItem.cdk === CDK;
+    });
+
+    // 若该 CDK 码有效，则将 isValidCDK 状态置为 true
+    setIsValidCDK(!isUsed);
+  };
+
+  return (
+    <>
+      <input
+        type="text"
+        value={CDK}
+        onChange={(e) => SetCDK(e.target.value)}
+      />
+      <button onClick={handleCheckCDK}>验证</button>
+      {isValidCDK ? <p>该 CDK 码有效。</p> : <p>该 CDK 码已被使用过或不存在。</p>}
+    </>
+  );
+}
+
 
 
 
