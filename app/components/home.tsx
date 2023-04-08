@@ -102,6 +102,177 @@ export function CDKModal() {
       "time": "2023-10-7"
   },
   ];
+  import React, { useState } from "react";
+import { Form, Input, Button, Checkbox, message, Card } from "antd";
+import "antd/dist/antd.css";
+
+const Login = () => {
+  const [form] = Form.useForm();
+
+  const onSubmit = (values: any) => {
+    console.log("login", values);
+    message.success("登录成功");
+  };
+
+  return (
+    <Card title="用户登录">
+      <Form
+        name="login-form"
+        form={form}
+        onFinish={onSubmit}
+        initialValues={{ remember: true }}
+      >
+        <Form.Item
+          label="用户名"
+          name="username"
+          rules={[{ required: true, message: "请输入用户名" }]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="密码"
+          name="password"
+          rules={[{ required: true, message: "请输入密码" }]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item name="remember" valuePropName="checked">
+          <Checkbox>记住我</Checkbox>
+        </Form.Item>
+
+        <Form.Item wrapperCol={{ offset: 6 }}>
+          <Button type="primary" htmlType="submit">
+            登录
+          </Button>
+        </Form.Item>
+      </Form>
+    </Card>
+  );
+};
+
+const Register = () => {
+  const [form] = Form.useForm();
+
+  const onSubmit = (values: any) => {
+    console.log("register", values);
+    message.success("注册成功");
+  };
+
+  return (
+    <Card title="用户注册">
+      <Form
+        name="register-form"
+        form={form}
+        onFinish={onSubmit}
+        initialValues={{ remember: true }}
+      >
+        <Form.Item
+          label="用户名"
+          name="username"
+          rules={[{ required: true, message: "请输入用户名" }]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="密码"
+          name="password"
+          rules={[{ required: true, message: "请输入密码" }]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item
+          label="确认密码"
+          name="confirmPassword"
+          rules={[
+            { required: true, message: "请再次输入密码" },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error("两次输入的密码不一致"));
+              },
+            }),
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item wrapperCol={{ offset: 6 }}>
+          <Button type="primary" htmlType="submit">
+            注册
+          </Button>
+        </Form.Item>
+      </Form>
+    </Card>
+  );
+};
+
+const ForgotPassword = () => {
+  const [form] = Form.useForm();
+
+  const onSubmit = (values: any) => {
+    console.log("forgot-password", values);
+    message.success("密码找回邮件已发送，请在邮箱中查收");
+  };
+
+  return (
+    <Card title="找回密码">
+      <Form
+        name="forgot-password-form"
+        form={form}
+        onFinish={onSubmit}
+        initialValues={{ remember: true }}
+      >
+        <Form.Item
+          label="邮箱"
+          name="email"
+          rules={[
+            { required: true, message: "请输入邮箱" },
+            { type: "email", message: "请输入正确的邮箱地址" },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item wrapperCol={{ offset: 6 }}>
+          <Button type="primary" htmlType="submit">
+            发送邮件
+          </Button>
+        </Form.Item>
+      </Form>
+    </Card>
+  );
+};
+
+const LoginPage = () => {
+  const [activeTab, setActiveTab] = useState("login");
+  return (
+    <div style={{ maxWidth: 600, margin: "0 auto", marginTop: 50 }}>
+      <Card
+        tabList={[
+          { key: "login", tab: "登录" },
+          { key: "register", tab: "注册" },
+          { key: "forgot-password", tab: "忘记密码" },
+        ]}
+        activeTabKey={activeTab}
+        onTabChange={(key) => setActiveTab(key as string)}
+      >
+        {activeTab === "login" && <Login />}
+        {activeTab === "register" && <Register />}
+        {activeTab === "forgot-password" && <ForgotPassword />}
+      </Card>
+    </div>
+  );
+};
+
+export default LoginPage;
+
+
   const login = () => {
     let cdkArray = cdkdb.filter((item) => item.cdk === CDK);
     console.log(cdkArray);
