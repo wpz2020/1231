@@ -98,7 +98,7 @@ export function CDKModal() {
       "time": "2024-03-20"
   },
   {
-      "cdk": "qq5666157",
+      "cdk": "qq13579",
       "time": "2024-03-20"
   },
   ];
@@ -113,7 +113,7 @@ export function CDKModal() {
       document.getElementsByClassName("modal-mask")?.[0]?.remove();
       alert("登录成功");
     } else {
-      alert("授权码错误或失效,请联系微信：JamesYu_888!");
+      alert("授权码错误或失效,请联系客服！");
     }
   };
   let loaclcdk: any = window.localStorage.getItem("cdk");
@@ -136,7 +136,7 @@ export function CDKModal() {
           />
         </div> 
         <p>   <a target="_blank" href="">授权码自助购买暂时不可用</a></p>
-        <p>如有更多好的想法请联系：JamesYu_888</p>
+        <p>如有更好的想法请关注微信公众号：趣盈全球，提交你的建议！</p>
         <div className={styles["modal-footer"]}>
           <div className={styles["modal-actions"]}>
             <IconButton
