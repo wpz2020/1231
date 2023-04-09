@@ -612,7 +612,7 @@ export function Chat(props: {
               </div>
             </div>
           );
-        })}<p>👉<a target="_blank" href="https://7e2d631c8410e00103.gradio.live">图文生成1️⃣👈</a><a target="_blank" href="">趣趣生活2️⃣</a> 🙈<a target="_blank" href="">趣趣电影3️⃣</a> 🙊<a target="_blank" href="">趣趣视频4️⃣</a></p>
+        })}
       </div>
 
       <div className={styles["chat-input-panel"]}>
