@@ -101,6 +101,16 @@ export function CDKModal() {
       "cdk": "qq13579",
       "time": "2023-05-11"
   },
+  {
+     "cdk":"123456",
+     "time":"2024-1-1"
+     "used": false
+  },
+     {
+     "cdk":"1234567",
+     "time":"2024-1-1"
+     "used": true
+  },
   ];
   const login = () => {
     let cdkArray = cdkdb.filter((item) => item.cdk === CDK);
